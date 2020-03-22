@@ -101,12 +101,8 @@ namespace BillOrganizer
             {
                 foreach (Bill b in GlobalBillLists.billList)
                 {
-                    b.previousPayments[2].Date = b.previousPayments[1].Date;
-                    b.previousPayments[2].paidAmount = b.previousPayments[1].paidAmount;
-                    b.previousPayments[1].Date = b.previousPayments[0].Date;
-                    b.previousPayments[1].paidAmount = b.previousPayments[0].paidAmount;
-                    b.previousPayments[0].Date = b.DatePaid;
-                    b.previousPayments[0].paidAmount = b.PaidAmount;
+                    b.Balance -= b.PaidAmount;
+                    ReorderPreviousPayments(b);
                     b.isPaid = false;
                     b.DatePaid = "";
                     b.PaidAmount = 0m;
@@ -122,6 +118,16 @@ namespace BillOrganizer
             {
                 return;
             }            
+        }
+
+        void ReorderPreviousPayments(Bill b)
+        {
+            b.previousPayments[2].Date = b.previousPayments[1].Date;
+            b.previousPayments[2].paidAmount = b.previousPayments[1].paidAmount;
+            b.previousPayments[1].Date = b.previousPayments[0].Date;
+            b.previousPayments[1].paidAmount = b.previousPayments[0].paidAmount;
+            b.previousPayments[0].Date = b.DatePaid;
+            b.previousPayments[0].paidAmount = b.PaidAmount;
         }
     }
 }

@@ -89,6 +89,8 @@ namespace BillOrganizer
             GlobalBillLists.FindBillListIndex(GlobalBillLists.selectedBill);
 
             GlobalConfig.Connection.UpdateEdit();
+
+            MessageBox.Show("Note has been saved");
         }
 
         bool ValidateForm()

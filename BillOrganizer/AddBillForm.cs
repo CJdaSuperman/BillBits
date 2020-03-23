@@ -1,25 +1,14 @@
 ﻿using BillOrganizer.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
 {
     public partial class AddBillForm : Form
     {
-        //used to have a reference to the Bills form
         Bills billsForm;
 
-        public AddBillForm()
-        {
-            InitializeComponent();
-        }
+        public AddBillForm() => InitializeComponent();        
 
         public AddBillForm(Bills parent)
         {
@@ -27,7 +16,7 @@ namespace BillOrganizer
             billsForm = parent;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        void btnAdd_Click(object sender, EventArgs e)
         {
             if(ValidateForm())
             {
@@ -42,7 +31,7 @@ namespace BillOrganizer
 
                 billsForm.WireList();
 
-                this.Close();
+                Close();
             }            
         }
 

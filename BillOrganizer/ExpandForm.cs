@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
@@ -29,7 +26,7 @@ namespace BillOrganizer
                 " years and " + GlobalBillLists.selectedBill.months + " months to pay off";
         }
 
-        private void AssignTextBoxes()
+        void AssignTextBoxes()
         {
             txtName.Text = GlobalBillLists.selectedBill.Name;
             txtDueDate.Text = GlobalBillLists.selectedBill.DueDate;
@@ -62,7 +59,7 @@ namespace BillOrganizer
             }
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        void btnApply_Click(object sender, EventArgs e)
         {
             if(ValidateForm())
             {
@@ -74,15 +71,23 @@ namespace BillOrganizer
                 txtPaidOffDate.Text = "It will take you " + years + " years and " +
                     months + " months to pay off";
             }
-        }        
+        }
 
-        private void btnRevert_Click(object sender, EventArgs e)
+        void CalculateTheoreticalAmount(decimal theoreticalAmount, out int months, out int years)
+        {
+            months = Decimal.ToInt32(GlobalBillLists.selectedBill.Balance /
+                                theoreticalAmount + 1);
+            years = months / 12;
+            months -= years * 12;
+        }
+
+        void btnRevert_Click(object sender, EventArgs e)
         {
             txtPaidOffDate.Text = "It will take you " + GlobalBillLists.selectedBill.years +
                 " years and " + GlobalBillLists.selectedBill.months + " months to pay off";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        void btnSave_Click(object sender, EventArgs e)
         {
             GlobalBillLists.selectedBill.Note = txtNotes.Text;
 
@@ -91,6 +96,16 @@ namespace BillOrganizer
             GlobalConfig.Connection.UpdateEdit();
 
             MessageBox.Show("Note has been saved");
+        }
+
+        void btnClear_Click(object sender, EventArgs e)
+        {
+            txtNotes.Text = "";
+            GlobalBillLists.selectedBill.Note = txtNotes.Text;
+
+            GlobalBillLists.FindBillListIndex(GlobalBillLists.selectedBill);
+
+            GlobalConfig.Connection.UpdateEdit();
         }
 
         bool ValidateForm()
@@ -115,14 +130,6 @@ namespace BillOrganizer
             }
 
             return true;
-        }
-
-        static void CalculateTheoreticalAmount(decimal theoreticalAmount, out int months, out int years)
-        {
-            months = Decimal.ToInt32(GlobalBillLists.selectedBill.Balance /
-                                theoreticalAmount + 1);
-            years = months / 12;
-            months -= years * 12;
-        }        
+        }                
     }
 }

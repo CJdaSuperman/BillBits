@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BillOrganizer
 {
@@ -42,7 +39,7 @@ namespace BillOrganizer
             }
         }
 
-        //Assigns the billListIndex for the billList using a Bill object from one of the forms
+        //Assigns the billListIndex for the billList using a Bill object from forms
         public static void FindBillListIndex(Bill bill)
         {
             for (int i = 0; i < billList.Count; i++)

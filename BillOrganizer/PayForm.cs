@@ -1,12 +1,6 @@
 ﻿using BillOrganizer.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
@@ -15,10 +9,7 @@ namespace BillOrganizer
     {
         Bills billsForm;
 
-        public PayForm()
-        {
-            InitializeComponent();
-        }
+        public PayForm() =>InitializeComponent();        
 
         public PayForm(Bills parent)
         {
@@ -26,7 +17,7 @@ namespace BillOrganizer
             billsForm = parent;
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        void btnApply_Click(object sender, EventArgs e)
         {
             if(ValidateForm())
             {
@@ -38,7 +29,7 @@ namespace BillOrganizer
 
                 billsForm.WireList();
 
-                this.Close();
+                Close();
             }
         }        
 

@@ -1,12 +1,5 @@
 ﻿using BillOrganizer.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
@@ -26,7 +19,7 @@ namespace BillOrganizer
             lstPaidBills.DisplayMember = "Name";
         }
 
-        private void btnExpand_Click(object sender, EventArgs e)
+        void btnExpand_Click(object sender, EventArgs e)
         {
             GlobalBillLists.selectedBill = (Bill)lstPaidBills.SelectedItem;
 
@@ -37,7 +30,7 @@ namespace BillOrganizer
             }                
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        void btnEdit_Click(object sender, EventArgs e)
         {
             Bill bill = (Bill)lstPaidBills.SelectedItem;
 
@@ -50,7 +43,7 @@ namespace BillOrganizer
             }                        
         }
 
-        private void btnRestore_Click(object sender, EventArgs e)
+        void btnRestore_Click(object sender, EventArgs e)
         {
             Bill bill = (Bill)lstPaidBills.SelectedItem;
 
@@ -68,7 +61,7 @@ namespace BillOrganizer
             }                        
         }
 
-        private void btnDeleteBill_Click(object sender, EventArgs e)
+        void btnDeleteBill_Click(object sender, EventArgs e)
         {
             Bill bill = (Bill)lstPaidBills.SelectedItem;
 
@@ -84,15 +77,17 @@ namespace BillOrganizer
             }            
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        void btnBack_Click(object sender, EventArgs e) => InstantiateBillsForm();
+
+        void InstantiateBillsForm()
         {
-            this.Hide();
+            Hide();
             Bills billsForm = new Bills();
             billsForm.Closed += (s, args) => this.Close();
             billsForm.Show();
         }
 
-        private void lblNextMonth_Click(object sender, EventArgs e)
+        void lblNextMonth_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This will start a new month to pay bills. " +
                 "Do you wish to continue?", "Go To Next Month", MessageBoxButtons.YesNo);
@@ -102,6 +97,7 @@ namespace BillOrganizer
                 foreach (Bill b in GlobalBillLists.billList)
                 {
                     b.Balance -= b.PaidAmount;
+                    b.ChangeDueDateMonth();
                     ReorderPreviousPayments(b);
                     b.isPaid = false;
                     b.DatePaid = "";
@@ -113,6 +109,8 @@ namespace BillOrganizer
                 GlobalBillLists.OrganizeBillList();
 
                 WireList();
+
+                InstantiateBillsForm();
             }
             else
             {

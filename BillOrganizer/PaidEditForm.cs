@@ -1,12 +1,6 @@
 ﻿using BillOrganizer.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
@@ -28,7 +22,7 @@ namespace BillOrganizer
             paidOffForm = parent;
         }
 
-        private void DisplayBill()
+        void DisplayBill()
         {
             txtName.Text = GlobalBillLists.billList.ElementAt(GlobalBillLists.billListIndex).Name;
             txtDueDate.Text = GlobalBillLists.billList.ElementAt(GlobalBillLists.billListIndex).DueDate;
@@ -38,7 +32,7 @@ namespace BillOrganizer
             txtPaidAmount.Text = Convert.ToString(GlobalBillLists.billList.ElementAt(GlobalBillLists.billListIndex).PaidAmount);
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        void btnApply_Click(object sender, EventArgs e)
         {
             if(ValidateForm())
             {
@@ -50,7 +44,7 @@ namespace BillOrganizer
 
                 paidOffForm.WireList();
 
-                this.Close();
+                Close();
             }
         }
 
@@ -118,7 +112,7 @@ namespace BillOrganizer
             return true;
         }
 
-        private void AssignBill()
+        void AssignBill()
         {
             GlobalBillLists.billList.ElementAt(GlobalBillLists.billListIndex).Name =
                                             txtName.Text;

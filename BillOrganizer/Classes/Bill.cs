@@ -44,6 +44,19 @@ namespace BillOrganizer
             
             years = months / 12;
             months -= years * 12;
-        }        
+        }   
+        
+        public void ChangeDueDateMonth()
+        {           
+            string monthString = DueDate.Substring(0, DueDate.IndexOf("/"));
+
+            string day = DueDate.Substring(DueDate.IndexOf("/"), DueDate.Length - monthString.Length);
+
+            int monthNum = int.Parse(monthString);
+            
+            monthString = (++monthNum).ToString();
+
+            DueDate = monthString + day;
+        }
     }
 }

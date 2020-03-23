@@ -1,12 +1,5 @@
 ﻿using BillOrganizer.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BillOrganizer
@@ -42,22 +35,22 @@ namespace BillOrganizer
             }                                
         }
 
-        private void btnPaid_Click(object sender, EventArgs e)
+        void btnPaid_Click(object sender, EventArgs e)
         {
             
-            this.Hide();
+            Hide();
             PaidOffForm paidForm = new PaidOffForm();
             paidForm.Closed += (s, args) => this.Close();
             paidForm.Show();
         }
 
-        private void btnAddBill_Click(object sender, EventArgs e)
+        void btnAddBill_Click(object sender, EventArgs e)
         {            
             AddBillForm addBillFrm = new AddBillForm(this);
             addBillFrm.Show();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        void btnEdit_Click(object sender, EventArgs e)
         {
             Bill bill = (Bill)lstBills.SelectedItem;
 
@@ -70,7 +63,7 @@ namespace BillOrganizer
             }            
         }
 
-        private void btnExpand_Click(object sender, EventArgs e)
+        void btnExpand_Click(object sender, EventArgs e)
         {            
             GlobalBillLists.selectedBill = (Bill)lstBills.SelectedItem;
 
@@ -81,7 +74,7 @@ namespace BillOrganizer
             }                
         }
 
-        private void btnDeleteBill_Click(object sender, EventArgs e)
+        void btnDeleteBill_Click(object sender, EventArgs e)
         {
             Bill bill = (Bill)lstBills.SelectedItem;
 

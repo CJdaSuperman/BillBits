@@ -1,9 +1,6 @@
 ﻿using BillOrganizer.Classes.TextHelpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BillOrganizer.Classes
 {
@@ -45,9 +42,6 @@ namespace BillOrganizer.Classes
 
         //used when a bill's info has been edited by any of the Edit forms and needs to be 
         //saved onto the file
-        public void UpdateEdit()
-        {
-            GlobalBillLists.billList.SaveToBillsFile(billsFile);
-        }
+        public void UpdateEdit() => GlobalBillLists.billList.SaveToBillsFile(billsFile);
     }
 }

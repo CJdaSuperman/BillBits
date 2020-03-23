@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BillOrganizer.Classes.TextHelpers
 {
@@ -15,17 +12,14 @@ namespace BillOrganizer.Classes.TextHelpers
         //loads file using the file path
         public static string FullFilePath(this string fileName)
         {
-            return $"{ConfigurationManager.AppSettings["filePath"] } \\{fileName}";
-            //AppConfig.cs -> C:\Users\Carol's laptop\Desktop\BillBits
+            return $"{ConfigurationManager.AppSettings["filePath"] } \\{fileName}";            
         }
 
         //reads the file and converts it into a list of strings
         public static List<string> LoadFile(this string file)
         {
             if(!File.Exists(file))
-            {
-                return new List<string>();
-            }
+                return new List<string>();            
 
             return File.ReadAllLines(file).ToList();
         }

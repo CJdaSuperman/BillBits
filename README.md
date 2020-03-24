@@ -5,4 +5,4 @@ It's a bill organizer where you can organize your bills between your unpaid and 
 
 The reason I'm most proud of this is because it's the first application I made on my own. No tutorials or a coding problem to solve. It came about because I saw how my parents keep track of their bills and I figured I could make something useful for them. It's a full-blown application with all its features made on my own and the feedback on what to add that came from my parents using it. 
 
-To find the source code for this project, 
+To find the source code for this project, BillOrganizer folder has the code for the Forms and in the Classes folder, it has the data classes. I also created a UML class diagram for the project to show how I visualized the scripts behaving with one another.
